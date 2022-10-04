@@ -1,0 +1,11 @@
+.hidden
+{
+    display : none;
+}
+img 
+{
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    z-index: 1;
+}
