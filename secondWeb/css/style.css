@@ -915,8 +915,8 @@ h3.my-profession
     
     .home .home-info
     {
-        flex: 0 0 100%;
-        max-width: 100%;    
+        flex: 0 0 50%;
+        max-width: 50%;    
     }
     .home .home-img
     {
