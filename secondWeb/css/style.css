@@ -279,6 +279,11 @@ ul
     top: -6px;
     left: 0;
 }
+.aside .nav-toggler.open span::before
+{
+    transform: rotate(45deg);
+    top:0;
+}
 .aside .nav-toggler span::after
 {
     content:'';
@@ -288,6 +293,11 @@ ul
     position: absolute;
     top: 6px;
     left: 0;
+}
+.aside .nav-toggler.open span::after
+{
+    transform: rotate(-45deg);
+    top:0;
 }
 
 .aside .nav
@@ -478,7 +488,6 @@ h3.my-profession
 }
 .about .about-content .personal-info .buttons .btn
 {
-    margin-right: 15px;
     margin-top: 10px;
 }
 
@@ -859,6 +868,10 @@ h3.my-profession
 /* ============================ */
 @media (max-width:1199px)
 {
+    .section .container
+    {
+        padding-top: 70px;
+    }
     .aside
     {
         left:-270px;
@@ -872,7 +885,7 @@ h3.my-profession
         display: flex;
         left: 30px;
     }
-    .aside .nav-toggler.aside.open
+    .aside .nav-toggler.open
     {
         left: 300px;
     }
