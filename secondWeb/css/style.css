@@ -938,3 +938,11 @@ h3.my-profession
         max-width: 100%;
     }
 }
+
+@media (max-height:480px)
+{
+    .aside .logo
+    {
+        display: none;
+    }
+}
