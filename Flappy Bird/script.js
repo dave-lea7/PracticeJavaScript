@@ -77,26 +77,46 @@ function component(width, height, color, x, y)
 
 function updateGameArea()
 {
-    if (myGamePiece.crashWith(myObstacle)) 
+    let x, y ;
+    for(let i = 0; i < myObstacles.length; i++)
     {
-        myGameArea.over();
-    } else
+        if(myGamePiece.crashWith(myObstacles[i]))
+        {
+            myGameArea.over();
+            return;
+        }
+    }
+    myGameArea.clear();
+    myGameArea.frameNo +=1;
+    if(myGameArea.frameNo == 1 || everyinterval(150))
     {
-        myGameArea.clear();
-        myObstacle.x += -1;
-        myObstacle.update();
-        myGamePiece.speedX = 0;
-        myGamePiece.speedY = 0;
-        if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -1; }
-        if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 1; }
-        if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -1; }
-        if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 1; }
-        myGamePiece.newPos();
-        myGamePiece.update();
-    }   
+        x = myGameArea.canvas.width;
+        minHeight = 20;
+        maxHeight = 200;
+        height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+        minGap = 50;
+        maxGap = 200;
+        gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+        myObstacles.push(new component(10, height, "green", x, 0));
+        myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+    }
+    for(let j = 0;j < myObstacles.length; j++)
+    {
+        myObstacles[j].x += -1;
+        myObstacles[j].update();
+    }
+    myGamePiece.speedX = 0;
+    myGamePiece.speedY = 0;
+    if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -1; }
+    if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 1; }
+    if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -1; }
+    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 1; }
+    myGamePiece.newPos();
+    myGamePiece.update();
+       
 }
 
-function everyinterval(n) 
+function everyinterval(n) // 프레임 별로 장애물 생성하기
 {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
     return false;
