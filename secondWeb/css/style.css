@@ -548,117 +548,14 @@ h3.my-profession
     line-height: 40px;
 }
 
-.about .about-content .education,
-.about .about-content .experience
-{
-    flex: 0 0 50%;
-    max-width: 50%;
-    margin-top: 30px;
-}
-
-.about .about-content h3.title
-{
-    font-size: 24px;
-    margin-bottom: 30px;
-    font-weight: 700;
-    color: var(--text-black-900);
-}
-
-.about .about-content .timeline-box
-{
-    flex: 0 0 100%;
-    max-width: 100%;
-}
-
-.about .about-content .timeline
-{
-    background-color: var(--bg--black-100);
-    padding: 30px 15px;
-    border: 1px solid var(--bg--black-50);
-    border-radius: 10px;
-    width: 100%;
-    position: relative;
-}
-
-.about .about-content .timeline .timeline-item
-{
-    position: relative;
-    padding-left: 37px;
-    padding-bottom: 50px;
-}
-
-.about .about-content .timeline .timeline-item:last-child
-{
-    padding-bottom: 0;
-}
-
-.about .about-content .timeline .timeline-item::before
-{
-    content:'';
-    width: 1px;
-    position: absolute;
-    height: 100%;
-    left: 7px;
-    top: 0;
-    background-color: var(--skin-color);
-}
-
-.about .about-content .timeline .circle-dot
-{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    background-color: var(--skin-color);
-}
-
-.about .about-content .timeline .timeline-date
-{
-    font-weight: 400;
-    font-size: 14px;
-    margin-bottom: 12px;
-    color: var(--text-black-700);
-}
-
-.about .about-content .timeline .timeline-date .fa
-{
-    margin-right: 5px;
-}
-
-.about .about-content .timeline .timeline-title
-{
-    font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 15px;
-    text-transform: capitalize;
-    color: var(--text-black-900);
-}
-
-.about .about-content .timeline .timeline-text
-{
-    line-height: 25px;
-    font-size: 16px;
-    text-align: justify;
-    color: var(--text-black-700);
-}
-
-/* =========================================== Service =========================================== */
-
-.service .container
-{
-    padding-bottom: 40px;
-}
-
-.service .service-item
+.about .experience-item
 {
     margin-bottom: 30px;
     flex: 0 0 33.33%;
     max-width: 33.33%;
 }
 
-.service .service-item .service-item-inner
+.about .experience-item .experience-item-inner
 {
     background-color: var(--bg--black-100);
     border: 1px solid var(--bg--black-50);
@@ -668,13 +565,13 @@ h3.my-profession
     transition: all 0.35 ease;
 }
 
-.service .service-item .service-item-inner:hover
+.about .experience-item .experience-item-inner:hover
 {
     box-shadow: 0 0 20px rgba(48,46,77,0.15);
 
 }
 
-.service .service-item .service-item-inner .icon
+.about .experience-item .experience-item-inner .icon
 {
     height: 60px;
     width: 60px;
@@ -685,7 +582,7 @@ h3.my-profession
     transition: all 0.3s ease;
 }
 
-.service .service-item .service-item-inner .icon .fa
+.about .experience-item .experience-item-inner .icon .fa
 {
     font-size: 40px;
     line-height: 60px;
@@ -693,18 +590,18 @@ h3.my-profession
     transition: all 0.3s ease;
 }
 
-.service .service-item .service-item-inner:hover .icon
+.about .experience-item .experience-item-inner:hover .icon
 {
     background-color: var(--skin-color);
 }
 
-.service .service-item .service-item-inner:hover .icon .fa
+.about .experience-item .experience-item-inner:hover .icon .fa
 {
     font-size: 25px;
     color: #ffffff;
 }
 
-.service .service-item .service-item-inner h4
+.about .experience-item .experience-item-inner h4
 {
     font-size: 18px;
     margin-bottom: 15px;
@@ -713,11 +610,114 @@ h3.my-profession
     text-transform: capitalize;
 }
 
-.service .service-item .service-item-inner p
+.about .experience-item .experience-item-inner p
 {
     font-size: 16px;
     color: var(--text-black-700);
     line-height: 25px;
+}
+
+/* =========================================== Experience =========================================== */
+
+.experience .container
+{
+    padding-bottom: 40px;
+}
+
+.experience .experience-content .education,
+.experience .experience-content .experience
+{
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-top: 30px;
+}
+
+.experience .experience-content h3.title
+{
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: var(--text-black-900);
+}
+
+.experience .experience-content .timeline-box
+{
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.experience .experience-content .timeline
+{
+    background-color: var(--bg--black-100);
+    padding: 30px 15px;
+    border: 1px solid var(--bg--black-50);
+    border-radius: 10px;
+    width: 100%;
+    position: relative;
+}
+
+.experience .experience-content .timeline .timeline-item
+{
+    position: relative;
+    padding-left: 37px;
+    padding-bottom: 50px;
+}
+
+.experience .experience-content .timeline .timeline-item:last-child
+{
+    padding-bottom: 0;
+}
+
+.experience .experience-content .timeline .timeline-item::before
+{
+    content:'';
+    width: 1px;
+    position: absolute;
+    height: 100%;
+    left: 7px;
+    top: 0;
+    background-color: var(--skin-color);
+}
+
+.experience .experience-content .timeline .circle-dot
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: var(--skin-color);
+}
+
+.experience .experience-content .timeline .timeline-date
+{
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: var(--text-black-700);
+}
+
+.experience .experience-content .timeline .timeline-date .fa
+{
+    margin-right: 5px;
+}
+
+.experience .experience-content .timeline .timeline-title
+{
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    color: var(--text-black-900);
+}
+
+.experience .experience-content .timeline .timeline-text
+{
+    line-height: 25px;
+    font-size: 16px;
+    text-align: justify;
+    color: var(--text-black-700);
 }
 
 /* =========================================== Portfolio =========================================== */
@@ -732,17 +732,18 @@ h3.my-profession
     max-width: 100%;
     margin-bottom: 40px;
 }
-
+/*
 .portfolio .portfolio-heading h2
 {
     color: var(--text-black-900);
     font-weight: 500;
 }
+*/
 
 .portfolio .portfolio-item
 {
-    flex: 0 0 33.33%;
-    max-width: 33.33%;
+ /*   flex: 0 0 33.33%;
+    max-width: 33.33%;*/
     margin-bottom: 30px;
 }
 
@@ -754,11 +755,41 @@ h3.my-profession
     cursor: pointer;    
 }
 
+.column
+{
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    display: none;
+}
+
+.portfolio .portfolio-item-inner:after
+{
+    clear: both;
+}
+
 .portfolio .portfolio-item-inner .portfolio-img img
 {
     width:100%;
     display:block;
 }
+
+.show 
+{
+    display: block;
+}
+
+.portfolio .portfolio-heading .portfolio-Btn-Container .btn.active
+{
+    background-color: var(--skin-color);
+}
+
+.portfolio .portfolio-item-inner h4
+{
+    color: var(--text-black-900);
+    font-weight: 700;
+    position: relative;
+}
+
 
 /* =========================================== Contact =========================================== */
 .contact-title
@@ -907,7 +938,7 @@ h3.my-profession
 {
     .contact .contact-info-item,
     .portfolio .portfolio-item,
-    .service .service-item
+    .experience .experience-item
     {
         flex: 0 0 50%;
         max-width: 50%;
@@ -928,9 +959,9 @@ h3.my-profession
     .contact .contact-form .col-6,
     .contact .contact-info-item,
     .portfolio .portfolio-item,
-    .service .service-item,
-    .about .about-content .experience,
-    .about .about-content .education,
+    .experience .experience-item,
+    .experience .experience-content .experience,
+    .experience .experience-content .education,
     .about .about-content .skills,
     .about .about-content .personal-info
     {
@@ -946,3 +977,75 @@ h3.my-profession
         display: none;
     }
 }
+
+/*======================*/
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  }
+  
+  /* Modal Content (image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    max-width: 700px;
+  }
+  
+  /* Caption of Modal Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+  }
+  
+  /* Add Animation */
+  .modal-content, #caption {  
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+  
+  @-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+  }
+  
+  @keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+  }
+  
+  /* The Close Button */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
