@@ -445,7 +445,7 @@ h3.my-profession
     color: var(--skin-color);
 }
 
-.about .about-content .about-text h3 p
+.about .about-content .about-text p
 {
     font-size: 16px;
     line-height: 25px;
