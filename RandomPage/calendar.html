@@ -12,7 +12,7 @@
 <body>
     <div class="wrapper"> <!-- 모든걸 씌운다. -->
         <div class="container-calendar"> <!-- 가격-->
-            <h3 class="monthAndYear"></h3><!--연, 월 출력란-->
+            <h3 id="monthAndYear"></h3><!--연, 월 출력란-->
             <!-- 버튼 영역 -->
             <div class="button-container-calendar">
                 <button id="previous" onclick="previous()">&#8249;</button>
@@ -20,10 +20,10 @@
             </div>
             <!-- 달력 영역 -->
             <table class="table-calendar" id="calendar" data-lang="en">
-                <thead class="thead-month">
+                <thead id="thead-month">
                 
                 </thead>
-                <tbody class="calendar-body">
+                <tbody id="calendar-body">
 
                 </tbody>
             </table>
