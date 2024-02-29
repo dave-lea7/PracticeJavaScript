@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="col small-12 large-12">
+		<div class="col-inner">
+			
+			
+<h1><span style="color: #ed1c24; font-size: 85%;">DBMS 1</span></h1>
+<p>DA, SQL, DB보안 등 실무자를 위한 위한 DB기술 바이블!</p>
+<p class="a3"><span dir="LTR" lang="en-US"></span></p><div id="kboard-document">
+	<div id="kboard-default-document">
+		<div class="kboard-document-wrap" itemscope="" itemtype="http://schema.org/Article">
+			<div class="kboard-title" itemprop="name">
+				<h1>유틸리티 API</h1>
+			</div>
+			
+			<div class="kboard-detail">
+																<div class="detail-attr detail-writer">
+					<div class="detail-name">작성자</div>
+					<div class="detail-value">dataonair</div>
+				</div>
+				<div class="detail-attr detail-date">
+					<div class="detail-name">작성일</div>
+					<div class="detail-value">1970-01-01 00:00</div>
+				</div>
+				<div class="detail-attr detail-view">
+					<div class="detail-name">조회</div>
+					<div class="detail-value">686</div>
+				</div>
+			</div>
+			
+			<div class="kboard-content" itemprop="description">
+				<div class="content-view">
+										<div class="titlepage"><br>
+<div><br>
+<div><br>
+<h2 class="title"><a id="tbCLI_function"></a>제6장유틸리티 API</h2>
+<a></a></div><br>
+<a></a></div><br>
+<a></a></div><br>
+<div class="toc"><b>내용 목차</b><br>
+<dl><br>
+ 	<dt></dt><br>
+</dl><br>
+</div><br>
+<div class="toc"><br>
+<dl><br>
+ 	<dt><span class="section"></span></dt></dl><p>6.1. 헤더 파일</p>
+ 	<span class="section"></span><p>6.2. 구조체</p>
+ 	<span class="section"></span><p>6.3. 유틸리티 API 목록</p> <br>
+	<span class="section"></span><p>6.3.1.TBConnect</p>
+ 	<span class="section"></span><p>6.3.2.TBDisconnect</p>
+ 	<span class="section"></span><p>6.3.3.TBExport</p>
+ 	<span class="section"></span><p>6.3.4.TBImport</p>
+</div><br>
+Tibero에서는 유틸리티와 관련된 C와 C++ 함수를 제공하고 있다. 애플리케이션 프로그램 개발자는 유틸리티 API를 사용하여 기존에 명령 프롬프트에서 수행하던 유틸리티를 애플리케이션 프로그램에서 호출할 수 있다.<br>
+<div class="section"><br>
+<div class="titlepage"><br>
+<div><br>
+<div><br>
+<h2 class="title"><a id="d5e6592"></a>6.1. 헤더 파일</h2>
+<a></a></div><br>
+<a></a></div><br>
+<a></a></div><br>
+다음은 유틸리티 API가 사용하는 헤더 파일이다.<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>헤더 파일명</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tbutil.h</td>
+<td>유틸리티 API를 선언하고 이와 관련된 구조체를 정의한다.정의할 구조체는 다음과 같다.<br>
+<div class="itemizedlist"><br>
+<ul>
+ 	<li>struct sqlstr</li>
+ 	<li>structTBExpImpMeta</li>
+ 	<li>structTBExportIn</li>
+ 	<li>structTBExportOut</li>
+ 	<li>structTBExportStruct</li>
+ 	<li>structTBImportIn</li>
+ 	<li>structTBImportOut</li>
+ 	<li>structTBImportStruct</li>
+</ul>
+</div></td>
+</tr>
+<tr>
+<td>sqlca.h</td>
+<td>유틸리티 내부에서 발생한 에러 정보를 애플리케이션 프로그램에 전달하는 구조체를 선언한다. struct sqlca 구조체를 선언한다.</td>
+</tr>
+<tr>
+<td>sqlcli.h</td>
+<td>ODBC 표준인 헤더 파일이며, 표준 API와 매크로를 정의한다.</td>
+</tr>
+</tbody>
+</table>
+</div><br>
+</div><div class="section"><br>
+<div class="titlepage"><br>
+<div><br>
+<div><br>
+<h2 class="title"><a id="d5e6641"></a>6.2. 구조체</h2>
+<a></a></div><br>
+<a></a></div><br>
+<a></a></div><br>
+다음은 유틸리티 API에서 정의할 수 있는 구조체이다.<br>
+<div class="itemizedlist"><br>
+<ul>
+ 	<li>sqlstr 구조체<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>필드</th>
+<th>용도</th>
+<th>타입</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>length</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>문자열의 길이를 명시한다.</td>
+</tr>
+<tr>
+<td>data</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>문자열이 저장된 포인터를 명시한다.</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>TBExpImpMeta 구조체<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>필드</th>
+<th>용도</th>
+<th>타입</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldTerm</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>컬럼(필드)의 구분자로, 사용할 문자열을 명시한다.</td>
+</tr>
+<tr>
+<td>fieldTermLen</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>컬럼(필드)의 구분자로, 사용할 문자열의 길이를 명시한다.</td>
+</tr>
+<tr>
+<td>lineTerm</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>레코드의 구분자로, 사용할 문자열을 명시한다.</td>
+</tr>
+<tr>
+<td>lineTermLen</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>레코드의 구분자로, 사용할 문자열의 길이를 명시한다.</td>
+</tr>
+<tr>
+<td>enclStart</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>컬럼의 데이터를 감쌀 시작 문자열을 명시한다.시작 문자열을 큰따옴표(" ")로 명시하면, 컬럼의 데이터 맨 앞에 큰따옴표가 붙게 된다.</td>
+</tr>
+<tr>
+<td>enclStartLen</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>컬럼의 데이터를 감쌀 시작 문자열의 길이를 명시한다.</td>
+</tr>
+<tr>
+<td>enclLen</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>컬럼의 데이터를 감쌀 종료 문자열을 명시한다.종료 문자열을 큰따옴표(" ")로 명시하면, 컬럼의 데이터 맨 뒤에 큰따옴표가 붙게 된다.</td>
+</tr>
+<tr>
+<td>enclEndLen</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>컬럼의 데이터를 감쌀 종료 문자열의 길이를 명시한다.</td>
+</tr>
+<tr>
+<td>escape</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>컬럼의 데이터를 해석할 때, 필요한 ESCAPE 문자열을 명시한다. 단,TBImport구조체에서만 사용한다.</td>
+</tr>
+<tr>
+<td>escapeLen</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>컬럼의 데이터를 해석할 때, 필요한 ESCAPE 문자열의 길이를 명시한다. 단,TBImport구조체에서만 사용한다.</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>TBExportIn 구조체<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>필드</th>
+<th>용도</th>
+<th>타입</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iMeta</td>
+<td>입력</td>
+<td>TBExpImpMeta *</td>
+<td>TBExpImpMeta 구조체의 포인터이다.데이터를 추출할 때 필요한 입력 메타데이터를 명시한다.</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>TBExportOut 구조체<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>필드</th>
+<th>용도</th>
+<th>타입</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>oRowsExported</td>
+<td>출력</td>
+<td>SQLINTEGER</td>
+<td>데이터 파일에 추출된 레코드의 개수가 기록된다.</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>TBExportStruct 구조체<br>
+<div class="informaltable"></div></li>
+</ul>
+</div><br>
+<div class="itemizedlist"><br>
+<ul>
+ 	<li style="list-style-type:none;">
+<ul>
+ 	<li>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>필드</th>
+<th>용도</th>
+<th>타입</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>piDataFileName</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>추출된 데이터가 저장될 파일의 경로명을 명시한다.</td>
+</tr>
+<tr>
+<td>iDataFileNameLen</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>데이터 파일명의 길이를 명시한다.파일명이 NULL 문자로 종료된 경우, SQL_NTS를 명시한다.</td>
+</tr>
+<tr>
+<td>piActionString</td>
+<td>입력</td>
+<td>sqlstr *</td>
+<td>SELECT 문을 이용하여 대상 테이블 또는 뷰의 데이터를 지정한다. SELECT문에 명시한 컬럼의 순서대로 추출된 데이터가 저장된다.</td>
+</tr>
+<tr>
+<td>iFileType</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>현재는 컬럼 구분자를 사용하는 형태인 SQL_DEL만 사용할 수 있다.</td>
+</tr>
+<tr>
+<td>piMsgFileName</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>데이터를 추출할 때 발생하는 에러와 경고 그리고 유용한 정보를 기록하는 메시지 파일명을 명시한다.</td>
+</tr>
+<tr>
+<td>iMsgFileNameLen</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>메시지 파일명의 길이를 명시한다.파일명이 NULL 문자로 종료된 경우, SQL_NTS를 명시한다.</td>
+</tr>
+<tr>
+<td>piExportInfoIn</td>
+<td>입력</td>
+<td>TBExportIn *</td>
+<td>TBExportIn 구조체의 포인터이다.데이터를 추출할 때 필요한 입력 메타데이터를 명시한다.</td>
+</tr>
+<tr>
+<td>piExportInfoOut</td>
+<td>입력</td>
+<td>TBExportOut *</td>
+<td>TBExportOut 구조체의 포인터이다.데이터를 추출한 후에 발생한 결과정보를 저장한다.</td>
+</tr>
+</tbody>
+</table>
+</div><br>
+<a id="tbl_TBExportStruct"></a></li>
+</ul>
+</li>
+</ul>
+<a></a><br>
+<ul>
+ 	<li>TBImportIn 구조체<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>필드</th>
+<th>용도</th>
+<th>타입</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iMeta</td>
+<td>입력</td>
+<td>TBExpImpMeta *</td>
+<td>TBExpImpMeta 구조체의 포인터이다.데이터를 로드할 때 필요한 입력 메타데이터를 명시한다.</td>
+</tr>
+<tr>
+<td>iRowCount</td>
+<td>입력</td>
+<td>SQLINTEGER</td>
+<td>로드할 레코드의 개수를 명시한다.사용자가 값을 0으로 지정한 경우, 데이터 파일의 모든 레코드를 로드한다.</td>
+</tr>
+<tr>
+<td>iSkipCount</td>
+<td>입력</td>
+<td>SQLINTEGER</td>
+<td>데이터 파일에서 로드할 대상을 제외하기 위해 건너뛸 레코드의 개수를 명시한다.</td>
+</tr>
+<tr>
+<td>iCommitCount</td>
+<td>입력</td>
+<td>SQLINTEGER</td>
+<td>데이터를 로드 중에 한 번씩 커밋하려고 할 때, 그 개수를 명시한다. 단, 성능적인 이슈로 사용자가 명시한 개수 단위로 커밋이 일어나지는 않는다.</td>
+</tr>
+<tr>
+<td>iErrorCount</td>
+<td>입력</td>
+<td>SQLINTEGER</td>
+<td>사용자가 허용하는 에러 레코드의 개수이다. 데이터를 로드 중에 에러 레코드 개수가 허용치보다 많으면, 로드를 중단한다.</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>TBImportOut 구조체<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>필드</th>
+<th>용도</th>
+<th>타입</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>oRowsRead</td>
+<td>출력</td>
+<td>SQLINTEGER</td>
+<td>데이터 파일에서 읽은 레코드의 개수를 기록 align="left"&gt;oRowsSkipped</td>
+<td>출력</td>
+<td>SQLINTEGER</td>
+<td>데이터 파일에서 건너뛴 레코드의 개수를 기록한다.</td>
+</tr>
+<tr>
+<td>oRowsInserted</td>
+<td>출력</td>
+<td>SQLINTEGER</td>
+<td>해당 테이블 또는 뷰에 입력(INSERT 연산)된 레코드의 개수를 기록한다.</td>
+</tr>
+<tr>
+<td>oRowsUpdated</td>
+<td>출력</td>
+<td>SQLINTEGER</td>
+<td>해당 테이블 또는 뷰에 수정(UPDATE 연산)된 레코드의 개수를 기록한다.</td>
+</tr>
+<tr>
+<td>oRowsRejected</td>
+<td>출력</td>
+<td>SQLINTEGER</td>
+<td>데이터 로드에 실패한 레코드의 개수를 기록한다.</td>
+</tr>
+<tr>
+<td>oRowsCommitted</td>
+<td>출력</td>
+<td>SQLINTEGER</td>
+<td>커밋에 성공한 레코드의 개수를 기록한다.</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>TBImportStruct 구조체<br>
+<div class="informaltable"></div></li>
+</ul>
+<ul>
+ 	<li style="list-style-type:none;">
+<ul>
+ 	<li>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>필드</th>
+<th>용도</th>
+<th>타입</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>piDataFileName</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>로드할 데이터 파일의 경로명을 명시한다.</td>
+</tr>
+<tr>
+<td>iDataFileNameLen</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>데이터 파일명의 길이를 명시한다.파일명이 NULL 문자로 종료된 경우, SQL_NTS를 명시한다.</td>
+</tr>
+<tr>
+<td>piActionString</td>
+<td>입력</td>
+<td>sqlstr *</td>
+<td>로드할 대상 테이블과 컬럼을 명시하고, 상세한 메타데이터를 명시한 문자열이다.tbLoader유틸리티의 컨트롤 파일에서 사용하는 문자열과 동일한 문법이다. 이 문법에 대한 내용은tbLoader유틸리티의 컨트롤 파일의 형식을 참고한다.</td>
+</tr>
+<tr>
+<td>iFileType</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>현재는 컬럼 구분자를 사용하는 형태인 SQL_DEL만 사용할 수 있다.</td>
+</tr>
+<tr>
+<td>piMsgFileName</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>데이터를 로드할 때 발생하는 에러와 경고 그리고 유용한 정보를 기록하는 메시지 파일명을 명시한다.</td>
+</tr>
+<tr>
+<td>iMsgFileNameLen</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>메시지 파일명의 길이를 명시한다.파일명이 NULL 문자로 종료된 경우, SQL_NTS를 명시한다.</td>
+</tr>
+<tr>
+<td>piBadFileName</td>
+<td>입력</td>
+<td>SQLCHAR *</td>
+<td>데이터를 로드할 때 에러가 발생한 데이터를 모아서 기록하는 오류 데이터 파일이다.</td>
+</tr>
+<tr>
+<td>iBadFileNameLen</td>
+<td>입력</td>
+<td>SQLSMALLINT</td>
+<td>오류 데이터 파일명의 길이를 명시한다.파일명이 NULL 문자로 종료된 경우, SQL_NTS를 명시한다.</td>
+</tr>
+<tr>
+<td>iDPL</td>
+<td>입력</td>
+<td>BOOL</td>
+<td>데이터를 로드할 때, Direct Path Load 방식의 사용 여부를 지정한다.</td>
+</tr>
+<tr>
+<td>piImportInfoIn</td>
+<td>입력</td>
+<td>TBImportIn *</td>
+<td>TBImportIn 구조체의 포인터이다.데이터를 로드할 때 필요한 입력 메타데이터를 지정한다.</td>
+</tr>
+<tr>
+<td>piImportInfoOut</td>
+<td>입력</td>
+<td>TBImportOut *</td>
+<td>TBImportOut 구조체의 포인터이다.데이터를 로드한 후에 발생한 결과정보를 로드한다.</td>
+</tr>
+<tr>
+<td>piImportInfoOut</td>
+<td>입력</td>
+<td>TBImportOut *</td>
+<td>TBImportOut 구조체의 포인터이다.데이터를 로드한 후에 발생한 결과정보를 로드한다.</td>
+</tr>
+</tbody>
+</table>
+</div><br>
+<a id="tbl_TBImportStruct"></a></li>
+</ul>
+</li>
+</ul>
+<a></a><a></a></div><br>
+<a></a></div><div class="section"><br>
+<div class="titlepage"><br>
+<div><br>
+<div><br>
+<h2 class="title"><a id="d5e7041"></a>6.3. 유틸리티 API 목록</h2>
+<a></a></div><br>
+<a></a></div><br>
+<a></a></div><br>
+다음은 유틸리티 API 목록이다.<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>함수 타입</th>
+<th>함수</th>
+<th>헤더 파일</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>데이터베이스 연결</td>
+<td><a title="6.3.1. TBConnect">TBConnect</a></td>
+<td>tbutil.h</td>
+</tr>
+<tr>
+<td>데이터베이스 연결해제</td>
+<td><a title="6.3.2. TBDisconnect">TBDisconnect</a></td>
+<td>tbutil.h</td>
+</tr>
+<tr>
+<td>데이터 추출</td>
+<td><a title="6.3.3. TBExport">TBExport</a></td>
+<td>tbutil.h</td>
+</tr>
+<tr>
+<td>데이터 로드</td>
+<td><a title="6.3.4. TBImport">TBImport</a></td>
+<td>tbutil.h</td>
+</tr>
+</tbody>
+</table>
+</div><div class="section"><br>
+<div class="titlepage"><br>
+<div><br>
+<div><br>
+<h3 class="title"><a id="TBConnect"></a>6.3.1.TBConnect</h3>
+<a></a></div><br>
+<a></a></div><br>
+<a></a></div><br>
+데이터베이스 연결정보(SID, 사용자명, 패스워드)를 이용하여Tibero서버에 연결하는 함수<a id="d5e7087" class="indexterm"></a>이다.<code class="function">TBConnect</code>함수의 세부 내용은 다음과 같다.<br>
+<div class="itemizedlist"><br>
+<ul>
+ 	<li>문법<br>
+<pre class="programlisting">SQLRETURN SQL_API<br>
+TBConnect(SQLCHAR *dnsname, SQLCHAR *username, SQLCHAR *pwd, struct sqlca *pSqlca);</pre>
+</li>
+ 	<li>파라미터<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>파라미터</th>
+<th>용도</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dnsname</td>
+<td>입력</td>
+<td>tbdsn.tbr(또는tbnet_alias.tbr)파일에 정의된 SID이다.</td>
+</tr>
+<tr>
+<td>username</td>
+<td>입력</td>
+<td>사용자명을 지정한다.</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>입력</td>
+<td>패스워드를 지정한다.</td>
+</tr>
+<tr>
+<td>pSqlca</td>
+<td>출력</td>
+<td>반환 코드가 SQL_SUCCESS가 아닌 경우, 유틸리티 내부에서 발생한 에러정보를 포함한다.</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>반환 코드<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>반환 코드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQL_SUCCESS</td>
+<td>함수가 성공적으로 완료된 상태</td>
+</tr>
+<tr>
+<td>SQL_SUCCESS_WITH_INFO</td>
+<td>함수가 성공적으로 완료되었으나, 경고 메시지가 있는 상태</td>
+</tr>
+<tr>
+<td>SQL_ERROR</td>
+<td>치명적인 에러가 발생한 상태</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>관련 함수</li>
+</ul>
+</div><br>
+<div class="itemizedlist"><br>
+<ul>
+ 	<li><a title="6.3.2. TBDisconnect">TBDisconnect</a></li>
+</ul>
+</div><br>
+</div><br>
+<div class="section"><br>
+<div class="titlepage"><br>
+<div><br>
+<div><br>
+<h3 class="title"><a id="TBDisconnect"></a>6.3.2.TBDisconnect</h3>
+<a></a></div><br>
+<a></a></div><br>
+<a></a></div><br>
+데이터베이스 연결정보(SID)에 해당하는Tibero서버와의 연결을 해제하는 함수이다.<code class="function">TBDisconnect</code>함수의 세부 내용은 다음과 같다.<br>
+<div class="itemizedlist"><br>
+<ul>
+ 	<li>문법<br>
+<pre class="programlisting">SQLRETURN SQL_API<br>
+TBDisconnect(SQLCHAR *dnsname, struct sqlca *pSqlca);</pre>
+</li>
+ 	<li>파라미터<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>파라미터</th>
+<th>용도</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dnsname</td>
+<td>입력</td>
+<td>tbdsn.tbr(또는tbnet_alias.tbr)파일에 정의된 SID이다.</td>
+</tr>
+<tr>
+<td>pSqlca</td>
+<td>출력</td>
+<td>반환 코드가 SQL_SUCCESS가 아닌 경우, 유틸리티 내부에서 발생한 에러정보를 포함한다.</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>반환 코드<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>반환 코드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQL_SUCCESS</td>
+<td>함수가 성공적으로 완료된 상태</td>
+</tr>
+<tr>
+<td>SQL_SUCCESS_WITH_INFO</td>
+<td>함수가 성공적으로 완료되었으나, 경고 메시지가 있는 상태</td>
+</tr>
+<tr>
+<td>SQL_ERROR</td>
+<td>치명적인 에러가 발생한 상태</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>관련 함수</li>
+</ul>
+</div><br>
+<div class="itemizedlist"><br>
+<ul>
+ 	<li><a title="6.3.1. TBConnect">TBConnect</a></li>
+</ul>
+</div><br>
+</div><br>
+<div class="section"><br>
+<div class="titlepage"><br>
+<div><br>
+<div><br>
+<h3 class="title"><a id="TBExport"></a>6.3.3.TBExport</h3>
+<a></a></div><br>
+<a></a></div><br>
+<a></a></div><br>
+데이터베이스에 존재하는 데이터를 외부 파일로 추출하는 함수이다. 외부 파일은 추출된 데이터를 텍스트 형태로 표시하며, 컬럼 구분자와 레코드 구분자를 이용하여 컬럼과 레코드를 추출한다. 이렇게 추출된 외부 파일은tbLoader유틸리티의 데이터 파일 형태를 취한다. 사용자는 SELECT 문을 이용하여 추출할 데이터를 선정할 수 있다. 단, 대상 테이블 또는 뷰의 SELECT 권한이 있어야 한다.<code class="function">TBExport</code>함수의 세부 내용은 다음과 같다.<br>
+<div class="itemizedlist"><br>
+<ul>
+ 	<li>문법<br>
+<pre class="programlisting">SQLRETURN SQL_API<br>
+TBExport(SQLINTEGER versionNumber, TBExportStruct *pParamStruct,<br>
+         struct sqlca *pSqlca);</pre>
+</li>
+ 	<li>파라미터<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>파라미터</th>
+<th>용도</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>versionNumber</td>
+<td>입력</td>
+<td>유틸리티 라이브러리의 버전번호이다. 이 파라미터는 유틸리티 라이브러리가 변경될 것에 대비하여 하위 버전과의 호환성을 위해 존재한다.현재 버전번호는 1이다.</td>
+</tr>
+<tr>
+<td>pParamStruct</td>
+<td>입출력</td>
+<td>이 파라미터를 사용하여 추출할 대상 정보를 명시하고, 추출 후에는 결과정보를 받는다.자세한 정보는<a>TBExportStruct 구조체</a>를 참고한다.</td>
+</tr>
+<tr>
+<td>pSqlca</td>
+<td>출력</td>
+<td>반환 코드가 SQL_SUCCESS가 아닌 경우, 유틸리티 내부에서 발생한 에러 정보를 포함한다.</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>반환 코드<br>
+<div class="informaltable"><br>
+<table border="1">
+<thead>
+<tr>
+<th>반환 코드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQL_SUCCESS</td>
+<td>함수가 성공적으로 완료된 상태</td>
+</tr>
+<tr>
+<td>SQL_SUCCESS_WITH_INFO</td>
+<td>함수가 성공적으로 완료되었으나, 경고 메시지가 있는 상태</td>
+</tr>
+<tr>
+<td>SQL_ERROR</td>
+<td>치명적인 에러가 발생한 상태</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+ 	<li>예제<br>
+<pre class="programlisting">#include "tbutil.h"<br>
+ <br>
+#define DNS_NAME  "DEFAULT"<br>
+#define USER_NAME "SYS"<br>
+#define PWD       "tibero"<br>
+ <br>
+int main(int argc, char *argv[]) {<br>
+    SQLRETURN      rc = SQL_SUCCESS;<br>
+    SQLINTEGER     versionNumber = 1;<br>
+    SQLCHAR        dataFileName[256];<br>
+    SQLCHAR        actionString[256];<br>
+    SQLCHAR        msgFileName[256];<br>
+    SQLCHAR        fieldTerm[5];<br>
+    SQLCHAR        lineTerm[5];<br>
+    SQLCHAR        enclStart[5];<br>
+    SQLCHAR        enclEnd[5];<br>
+ <br>
+    struct sqlca   ca           = {"\0", 0, 0, {0, "\0"}, "\0",<br>
+                                   {0, 0, 0, 0, 0, 0}, "\0", "\0"};<br>
+    TBExportStruct exportStruct = {NULL, 0, NULL, NULL, NULL, 0, NULL,<br>
+                                   0, NULL, NULL};<br>
+    TBExportIn     exportIn     = {{NULL, 0, NULL, 0, NULL, 0, NULL, 0, NULL, 0}};<br>
+    TBExportOut    exportOut    = {0};<br>
+ <br>
+    rc= TBConnect((SQLCHAR *)DNS_NAME, (SQLCHAR *)USER_NAME, (SQLCHAR *)PWD, &amp;ca);<br>
+    <br>
+    if (rc != SQL_SUCCESS) return -1;<br>
+ <br>
+    strcpy((char *)dataFileName, "./all_tables.dat");<br>
+    strcpy((char *)actionString, "select * from all_tables");<br>
+    strcpy((char *)msgFileName, "./all_tables.log");<br>
+    strcpy((char *)fieldTerm, ",");<br>
+    strcpy((char *)lineTerm, "\n");<br>
+    strcpy((char *)enclStart, "\);""</pre></li></ul></div></div></div>"				</div>
+			</div>
+			
+			<div class="kboard-document-action">
+				<div class="left">
+					<button type="button" class="kboard-button-action kboard-button-like" onclick="kboard_document_like(this)" data-uid="101900" title="좋아요">좋아요 <span class="kboard-document-like-count">0</span></button>
+					<button type="button" class="kboard-button-action kboard-button-unlike" onclick="kboard_document_unlike(this)" data-uid="101900" title="싫어요">싫어요 <span class="kboard-document-unlike-count">0</span></button>
+				</div>
+				<div class="right">
+					<button type="button" class="kboard-button-action kboard-button-print" onclick="kboard_document_print('https://dataonair.or.kr/?action=kboard_document_print&amp;uid=101900')" title="인쇄">인쇄</button>
+				</div>
+			</div>
+			
+					</div>
+		
+				
+		<div class="kboard-document-navi">
+			<div class="kboard-prev-document">
+							</div>
+			
+			<div class="kboard-next-document">
+								<a href="/db-tech-reference/d-guide/dbms-1/?pageid=18&amp;mod=document&amp;uid=101726" title="Introduction">
+					<span class="navi-document-title kboard-default-cut-strings">Introduction</span>
+					<span class="navi-arrow">»</span>
+				</a>
+							</div>
+		</div>
+		
+		<div class="kboard-control">
+			<div class="left">
+				<a href="/db-tech-reference/d-guide/dbms-1/?pageid=18&amp;mod=list" class="kboard-default-button-small">목록보기</a>
+							</div>
+					</div>
+		
+			</div>
+</div><p></p>
+		</div>
+	</div>
+</body>
+</html>
